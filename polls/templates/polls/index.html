@@ -4,9 +4,14 @@
     <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a> </li>
     {% endfor %}
 </ul>
-    {% else %}
-     <p>
-         Нет вопросов!
-     </p>
+{% else %}
+<p>
+    Нет вопросов!
+</p>
+{% endif %}
 
+{% if user.is_authenticated %}
+    <p>Привет, {{ user.username }}! <a href="{% url 'polls:profile_detail' %}">Мой профиль</a></p>
+{% else %}
+    <p><a href="{% url 'polls:register' %}">Зарегистрироваться</a></p>
 {% endif %}

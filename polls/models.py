@@ -3,10 +3,15 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 
 class MyUser(AbstractUser):
-    avatar = models.ImageField(upload_to='avatar', blank=True)
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+
+    def get_absolute_url(self):
+        return reverse('profile_detail', kwargs={'pk': self.pk})
+
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
