@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Регистрация</title>
-</head>
-<body>
+{% extends 'base_generic.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
     <h2>Регистрация</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -11,5 +10,4 @@
         <button type="submit">Зарегистрироваться</button>
     </form>
     <p><a href="{% url 'polls:index' %}">На главную</a></p>
-</body>
-</html>
+{%endblock%}

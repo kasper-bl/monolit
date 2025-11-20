@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Редактирование профиля</title>
-</head>
-<body>
+{% extends 'base_generic.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
     <h2>Редактировать профиль</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -12,4 +11,4 @@
     </form>
     <p><a href="{% url 'polls:profile_detail' %}">Назад к профилю</a></p>
 </body>
-</html>
+{%endblock%}
