@@ -73,7 +73,7 @@ def profile_update(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Профиль успешно обновлён!')
-            return redirect('profile_detail')
+            return redirect('polls:profile_detail')
     else:
         form = ProfileUpdateForm(instance=request.user)
 

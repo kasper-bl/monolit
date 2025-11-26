@@ -8,7 +8,4 @@
     {% if user.avatar %}
         <img src="{{ user.avatar.url }}" alt="Аватар" width="150">
     {% endif %}
-    <p><a href="{% url 'polls:profile_update' %}">Редактировать профиль</a></p>
-    <p><a href="{% url 'polls:profile_delete' %}">Удалить профиль</a></p>
-    <p><a href="{% url 'polls:index' %}">На главную</a></p>
 {%endblock%}

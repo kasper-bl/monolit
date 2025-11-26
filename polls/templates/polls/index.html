@@ -14,7 +14,7 @@
     {% endif %}
 
     {% if user.is_authenticated %}
-        <p>Привет, {{ user.username }}! <a href="{% url 'polls:profile_detail' %}">Мой профиль</a></p>
+        <p>Привет, {{ user.username }}
     {% else %}
         <p><a href="{% url 'polls:register' %}">Зарегистрироваться</a></p>
     {% endif %}
