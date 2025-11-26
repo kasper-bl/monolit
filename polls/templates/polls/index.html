@@ -1,21 +1,22 @@
-{% extends 'base_generic.html' %}
-
-{% block title %}Главная{% endblock %}
+{% extends "base_generic.html" %}
 
 {% block content %}
-    {% if latest_question_list %}
-        <ul>
-            {% for question in latest_question_list %}
-                <li><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Нет вопросов!</p>
-    {% endif %}
-
-    {% if user.is_authenticated %}
-        <p>Привет, {{ user.username }}
-    {% else %}
-        <p><a href="{% url 'polls:register' %}">Зарегистрироваться</a></p>
-    {% endif %}
+  <h1>Опросы</h1>
+  {% if latest_question_list %}
+    <ul>
+      {% for question in latest_question_list %}
+        <li>
+          <h3><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></h3>
+          {% if question.description_short %}
+            <p>{{ question.description_short }}</p>
+          {% endif %}
+          {% if question.image %}
+            <img src="{{ question.image.url }}" alt="Изображение к вопросу" style="max-width: 200px;">
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Нет доступных опросов.</p>
+  {% endif %}
 {% endblock %}

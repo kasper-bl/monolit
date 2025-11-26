@@ -1,15 +1,17 @@
-{% extends 'base_generic.html' %}
-
-{% block title %}Главная{% endblock %}
+{% extends "base_generic.html" %}
 
 {% block content %}
+  <h1>{{ question.question_text }}</h1>
 
-    <h1>{{ question.question_text }}</h1>
-    <ul>
-        {% for choice in question.choice_set.all %}
-        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{choice.votes|pluralize}}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'polls:detail'  question.id %}">выбрать еще раз? </a>
+  <p><strong>Всего голосов:</strong> {{ total_votes }}</p>
 
-{%endblock%}
+  <ul>
+    {% for item in choices_with_percent %}
+      <li>
+        {{ item.choice.choice_text }} — {{ item.choice.votes }} голос(ов) ({{ item.percent }}%)
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'polls:detail' question.id %}">Голосовать снова?</a>
+{% endblock %}

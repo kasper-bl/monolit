@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Создать опрос</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h3>Варианты ответа:</h3>
+    {{ formset.management_form }}
+    {% for form in formset %}
+      <p>{{ form.choice_text.label_tag }} {{ form.choice_text }}</p>
+      {% if form.id %}{{ form.id }}{% endif %}
+      {% if form.DELETE %}{{ form.DELETE }}{% endif %}
+    {% endfor %}
+
+    <button type="submit">Создать</button>
+  </form>
+{% endblock %}
